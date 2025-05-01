@@ -1,0 +1,15 @@
+#####add disk to pv#####
+sudo lsblk #see phisical disk
+sudo fdisk /dev/sdb #create partition for disk
+n # for create new partion
+w # for save change
+sudo pvcreate /dev/sdb1 # conversion partion to  Physical Volume (PV)
+sudo vgdisplay # for see volume group (vg)
+sudo vgextend ubuntu-vg /dev/sdb1 # add pv tp vg # (ubuntu-vg) name vg
+sudo vgdisplay ubuntu-vg # for see add or no 
+sudo lvextend -l +100%FREE /dev/ubuntu-vg/ubuntu-lv # for add new space vg to logical volume 
+sudo resize2fs /dev/ubuntu-vg/ubuntu-lv # for add new space to system file
+
+
+ 
+
